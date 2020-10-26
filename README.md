@@ -1,6 +1,6 @@
 # disability-parking-badge-automation
 
-### Ministry of Transport would not respond to the online form, so I automated it to keep sending it until they do.
+### Ministry of Transport would not respond to the online form, so I automated it to keep sending until they do.
 
 To use this script you'll need to install the `requirements.txt` using:
 ```
