@@ -10,7 +10,7 @@ pip install -r requirements.txt
 and have a `.env` file in the same folder that looks like that:
 
 ```
-DRIVER_PATH='Path/to/Chrome WebDriver'
+DRIVER_PATH='Path/to/Firefox WebDriver'
 PDF_PATH='/Path/to/ApplicationForm.pdf'
 FULL_NAME='Your Name'
 ID='111111111'
