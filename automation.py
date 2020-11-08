@@ -29,8 +29,11 @@ while True:
         driver.find_element_by_name("ff_nm_files_citizen_id[]").send_keys(ID)
         driver.find_element_by_name("ff_nm_email[]").send_keys(EMAIL)
         driver.find_element_by_name("ff_nm_file1[]").send_keys(PDF_PATH)
+        # driver.find_element_by_id("ff_form26").submit()
         driver.find_element_by_id("bfSubmitButton").click()
-        print("1st form sent - "+time.strftime("%H:%M:%S", time.localtime()))
+        success = WebDriverWait(driver, 200).until(EC.visibility_of_element_located((By.CLASS_NAME, "jmcheck")))
+        if success:
+            print("1st form sent - "+time.strftime("%H:%M:%S", time.localtime()))
 
         # Submitting a different form because the first one isn't working
         driver.get("https://motssl5.mot.gov.il/FORMS/he/parking-badge/lang/he-IL")
@@ -39,18 +42,22 @@ while True:
         driver.find_element_by_name("ff_nm_teudat_zehut_rid[]").send_keys(ID)
         driver.find_element_by_name("ff_nm_phone[]").send_keys(PHONE_NUMBER)
         driver.find_element_by_name("ff_nm_content_ttl[]").send_keys(
-            ".הגשתי כבר המון פעמים בקשה לקבלת תו נכה בטופס ההגשה המקוון וגם בטופס הזה. בשני המקרים אתם לא מגיבים. אבקש לטפל בבקשה במהרה, אנחנו מחכים כבר מעל חודש וזה חשוב מאוד.")
+            "האתר של הגשת תו הנכה לא עובד כבר מעל חודש. אני ממשיך לנסות להגיש בקשות ממנו ומכאן ואתם לא מגיבים. בבקשה תטפלו בבקשה לתו נכה וצרו אתנו קשר!! העניין חשוב מאוד ודחוף כי הילדה צריכה להגיע לטיפולים! בבקשה צרו אתנו קשר במהרה")
         driver.find_element_by_name("ff_nm_file[]").send_keys(PDF_PATH)
         driver.find_element_by_name("ff_nm_email[]").send_keys(EMAIL)
         driver.find_element_by_id("bfSubmitButton").click()
-        print("2nd form sent - "+time.strftime("%H:%M:%S", time.localtime()))
+        success = WebDriverWait(driver, 200).until(EC.invisibility_of_element_located((By.ID, "bfSubmitButton")))
+        if success:
+            print("2nd form sent - "+time.strftime("%H:%M:%S", time.localtime()))
+            time.sleep(5)
+
         forms_sent = True
     except:
         print("Error - "+time.strftime("%H:%M:%S", time.localtime()))
     finally:
         driver.quit()
         if (forms_sent):
-            time.sleep(37*60)
+            time.sleep(60*60)
             forms_sent=False
 
         
